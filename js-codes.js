@@ -9,9 +9,11 @@ function computerPlay() {
     }
 }
 
-function playRound(playerSelection, computerSelection) {
-    p1 = playerSelection.toLowerCase();
-    p2 = computerSelection.toLowerCase();
+function playRound(playerSelection) {
+    let p2 = computerPlay().toLowerCase();
+    let p1 = playerSelection.toLowerCase();
+
+    let result = 'helo'
     if (p1 === "rock" && p2 === "paper") {
         return "You Lose! Paper beats Rock";
     }
@@ -42,44 +44,11 @@ function playRound(playerSelection, computerSelection) {
     else if (p1 === "scissors" && p2 === "scissors") {
         return "Draw! You both picked scissors!";
     }
-    else {
-        return "Please input a valid weapon (rock, paper of scissors)"
-    }
   }
 
-
-function game() {
-    let i;
-    let me = 0;
-    let comp = 0;
-    for (i=0; i < 5; i++) {
-        const playerSelection = prompt("What is your weapon?");
-        const computerSelection = computerPlay();
-        gm = playRound(playerSelection, computerSelection)
-        if (gm.substring(0,5) === "You W") {
-            me ++;
-            console.log(gm);
-        }
-        else if (gm.substring(0,5) === "You L") {
-            comp ++;
-            console.log(gm);
-        }
-        else if (gm.substring(0,5) === "Draw!") {
-            me ++;
-            comp ++;
-            console.log(gm);
-        }
-        else {
-            console.log(gm);
-        }
-    }
-    if (me > comp){
-        return "Congratulations! You won with a score: "+me+":"+comp;
-    }
-    else if (me < comp){
-        return "I'm sorry! You lost with a score: "+me+":"+comp;
-    }
-    else {
-        return "It's a draw! You each got "+me+" points";
-    }
-}
+const buttons = document.querySelectorAll('input')
+buttons.forEach(button => {
+    button.addEventListener('click',function(){
+        alert(playRound(button.value));
+    })
+})
